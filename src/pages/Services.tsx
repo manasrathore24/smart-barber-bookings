@@ -82,8 +82,7 @@ export default function Services() {
                     </div>
                     <Button 
                       size="sm"
-                      variant="ghost"
-                      className="text-primary hover:text-primary hover:bg-primary/10"
+                      className="bg-primary/15 text-primary border border-primary/30 hover:bg-primary/25 hover:border-primary/60"
                       onClick={() => navigate(user ? `/book?service=${service.id}` : "/auth?mode=signup")}
                     >
                       Book Now

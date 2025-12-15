@@ -277,7 +277,7 @@ function ServiceManager({ services }: { services: any[] }) {
         <CardTitle className="font-display text-xl">Manage Services</CardTitle>
         <Dialog open={isOpen} onOpenChange={(open) => { setIsOpen(open); if (!open) resetForm(); }}>
           <DialogTrigger asChild>
-            <Button size="sm" className="bg-gradient-primary hover:opacity-90">
+            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm">
               <Plus className="mr-2 h-4 w-4" />
               Add Service
             </Button>
@@ -486,7 +486,7 @@ function BarberManager({ barbers }: { barbers: any[] }) {
         <CardTitle className="font-display text-xl">Manage Barbers</CardTitle>
         <Dialog open={isOpen} onOpenChange={(open) => { setIsOpen(open); if (!open) resetForm(); }}>
           <DialogTrigger asChild>
-            <Button size="sm" className="bg-gradient-primary hover:opacity-90">
+            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm">
               <Plus className="mr-2 h-4 w-4" />
               Add Barber
             </Button>
