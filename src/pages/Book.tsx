@@ -294,7 +294,7 @@ export default function Book() {
                           <h3 className="font-display text-lg text-foreground">{service.name}</h3>
                           <p className="text-sm text-muted-foreground">{service.description}</p>
                         </div>
-                        <div className="text-primary font-bold">${Number(service.price)}</div>
+                        <div className="text-primary font-bold">₹{Number(service.price)}</div>
                       </div>
                       <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
                         <Clock className="h-4 w-4" />
@@ -425,7 +425,7 @@ export default function Book() {
                   <div className="flex items-center justify-between p-4 rounded-lg border border-primary/30 bg-primary/5">
                     <span className="text-muted-foreground">Total</span>
                     <span className="font-display text-2xl text-primary">
-                      ${Number(selectedServiceData?.price || 0)}
+                      ₹{Number(selectedServiceData?.price || 0)}
                     </span>
                   </div>
                 </div>
