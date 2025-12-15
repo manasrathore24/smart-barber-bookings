@@ -174,7 +174,7 @@ export default function Auth() {
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-gradient-primary hover:opacity-90 text-primary-foreground"
+                    className="w-full bg-[rgba(60,67,82,1)] hover:bg-[rgba(60,67,82,0.9)] text-primary-foreground"
                     disabled={isLoading}
                   >
                     {isLoading ? (
@@ -241,7 +241,7 @@ export default function Auth() {
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-gradient-primary hover:opacity-90 text-primary-foreground"
+                    className="w-full bg-[rgba(60,67,82,1)] hover:bg-[rgba(60,67,82,0.9)] text-primary-foreground"
                     disabled={isLoading}
                   >
                     {isLoading ? (

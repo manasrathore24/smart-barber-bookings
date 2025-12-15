@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Clock, DollarSign, ArrowRight, Scissors, Loader2 } from "lucide-react";
+import { Clock, ArrowRight, Scissors, Loader2 } from "lucide-react";
 
 export default function Services() {
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ export default function Services() {
                     </div>
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-primary font-display text-2xl">
-                        <DollarSign className="h-5 w-5" />
+                        <span>₹</span>
                         {Number(service.price).toFixed(0)}
                       </div>
                     </div>

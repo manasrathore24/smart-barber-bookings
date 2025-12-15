@@ -97,7 +97,7 @@ export function Navbar() {
                 </Button>
                 <Button 
                   size="sm" 
-                  className="bg-gradient-primary hover:opacity-90 text-primary-foreground"
+                  className="bg-[rgba(60,67,82,1)] hover:bg-[rgba(60,67,82,0.9)] text-primary-foreground"
                   onClick={() => navigate("/auth?mode=signup")}
                 >
                   Get Started
@@ -185,7 +185,7 @@ export function Navbar() {
                       Sign In
                     </Button>
                     <Button 
-                      className="w-full bg-gradient-primary hover:opacity-90"
+                      className="w-full bg-[rgba(60,67,82,1)] hover:bg-[rgba(60,67,82,0.9)] text-primary-foreground"
                       onClick={() => {
                         navigate("/auth?mode=signup");
                         setMobileMenuOpen(false);

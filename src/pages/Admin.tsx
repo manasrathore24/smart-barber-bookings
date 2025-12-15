@@ -78,9 +78,8 @@ export default function Admin() {
         .from("bookings")
         .select(`
           *,
-          services:service_id (name),
-          barbers:barber_id (name),
-          profiles:customer_id (full_name)
+          services:service_id (name, price),
+          barbers:barber_id (name)
         `)
         .order("booking_date", { ascending: false })
         .limit(50);
@@ -102,9 +101,19 @@ export default function Admin() {
     return null;
   }
 
-  const todayBookings = bookings?.filter(
-    b => b.booking_date === format(new Date(), "yyyy-MM-dd") && b.status !== "cancelled"
-  ).length || 0;
+  const activeServices = services?.filter((s: any) => s.is_active).length || 0;
+  const activeBarbers = barbers?.filter((b: any) => b.is_active).length || 0;
+
+  const todayBookings =
+    bookings?.filter(
+      (b) => b.booking_date === format(new Date(), "yyyy-MM-dd") && b.status !== "cancelled"
+    ).length || 0;
+
+  const totalRevenue =
+    bookings?.reduce(
+      (sum, booking: any) => sum + Number(booking.services?.price || 0),
+      0
+    ) || 0;
 
   return (
     <div className="min-h-screen bg-background">
@@ -138,8 +147,10 @@ export default function Admin() {
                     <Scissors className="h-6 w-6 text-secondary" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Services</p>
-                    <p className="font-display text-2xl text-foreground">{services?.length || 0}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {activeServices === 1 ? "Service" : "Services"}
+                    </p>
+                    <p className="font-display text-2xl text-foreground">{activeServices}</p>
                   </div>
                 </div>
               </CardContent>
@@ -151,8 +162,10 @@ export default function Admin() {
                     <Users className="h-6 w-6 text-accent" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Barbers</p>
-                    <p className="font-display text-2xl text-foreground">{barbers?.length || 0}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {activeBarbers === 1 ? "Barber" : "Barbers"}
+                    </p>
+                    <p className="font-display text-2xl text-foreground">{activeBarbers}</p>
                   </div>
                 </div>
               </CardContent>
@@ -161,11 +174,13 @@ export default function Admin() {
               <CardContent className="p-6">
                 <div className="flex items-center gap-4">
                   <div className="p-3 rounded-lg bg-primary/10">
-                    <DollarSign className="h-6 w-6 text-primary" />
+                    <span className="font-display text-xl text-primary">₹</span>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Total Bookings</p>
-                    <p className="font-display text-2xl text-foreground">{bookings?.length || 0}</p>
+                    <p className="text-sm text-muted-foreground">Total Revenue</p>
+                    <p className="font-display text-2xl text-foreground">
+                      ₹{Number(totalRevenue.toFixed(0))}
+                    </p>
                   </div>
                 </div>
               </CardContent>
@@ -305,7 +320,7 @@ function ServiceManager({ services }: { services: any[] }) {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label>Price ($)</Label>
+                  <Label>Price (₹)</Label>
                   <Input
                     type="number"
                     value={formData.price}
@@ -344,7 +359,7 @@ function ServiceManager({ services }: { services: any[] }) {
               <div>
                 <p className="font-semibold text-foreground">{service.name}</p>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <span>${Number(service.price)}</span>
+                  <span>₹{Number(service.price)}</span>
                   <span>{service.duration_minutes} mins</span>
                 </div>
               </div>
@@ -610,7 +625,7 @@ function BarberManager({ barbers }: { barbers: any[] }) {
 function BookingsList({ bookings }: { bookings: any[] }) {
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "confirmed": return "bg-accent/20 text-accent";
+      case "confirmed": return "bg-primary/90 text-primary-foreground";
       case "pending": return "bg-yellow-500/20 text-yellow-400";
       case "cancelled": return "bg-destructive/20 text-destructive";
       case "completed": return "bg-muted text-muted-foreground";
@@ -643,7 +658,7 @@ function BookingsList({ bookings }: { bookings: any[] }) {
                   <span>{format(parseISO(booking.booking_date), "MMM d, yyyy")}</span>
                   <span>{booking.start_time.slice(0, 5)}</span>
                   <span>{booking.barbers?.name}</span>
-                  <span>{booking.profiles?.full_name || "Customer"}</span>
+                <span>Customer</span>
                 </div>
               </div>
             </div>

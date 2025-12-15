@@ -9,6 +9,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { format, parseISO, isPast, isToday } from "date-fns";
 import { toast } from "sonner";
+
 import { 
   Calendar, Clock, User, Scissors, 
   X, Loader2, Plus 
@@ -77,7 +78,7 @@ export default function MyBookings() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "confirmed": return "bg-accent/20 text-accent border-accent/30";
+      case "confirmed": return "bg-primary/90 text-primary-foreground border-primary";
       case "pending": return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
       case "cancelled": return "bg-destructive/20 text-destructive border-destructive/30";
       case "completed": return "bg-muted text-muted-foreground border-muted";
@@ -162,7 +163,7 @@ export default function MyBookings() {
                             </div>
                             <div className="flex items-center gap-2 text-muted-foreground">
                               <Scissors className="h-4 w-4 text-primary" />
-                              ${Number(booking.services?.price)}
+                              ₹{Number(booking.services?.price)}
                             </div>
                           </div>
                         </div>
