@@ -381,10 +381,14 @@ function BarberManager({ barbers }: { barbers: any[] }) {
     bio: "",
     specialties: "",
   });
-  const [schedule, setSchedule] = useState<{ [key: number]: { start: string; end: string } }>({});
   const queryClient = useQueryClient();
 
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const getDefaultSchedule = () =>
+    Object.fromEntries(days.map((_, index) => [index, { start: "09:00", end: "22:00" }]));
+  const [schedule, setSchedule] = useState<{ [key: number]: { start: string; end: string } }>(
+    getDefaultSchedule()
+  );
 
   const saveBarber = useMutation({
     mutationFn: async () => {
@@ -458,7 +462,7 @@ function BarberManager({ barbers }: { barbers: any[] }) {
 
   const resetForm = () => {
     setFormData({ name: "", bio: "", specialties: "" });
-    setSchedule({});
+    setSchedule(getDefaultSchedule());
     setEditingBarber(null);
   };
 

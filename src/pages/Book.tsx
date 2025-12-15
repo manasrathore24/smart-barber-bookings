@@ -454,17 +454,18 @@ export default function Book() {
                         Booking...
                       </>
                     ) : (
-                      <>
+                      <Button className="bg-[rgba(60,67,82,1)] hover:bg-[rgba(60,67,82,0.9)] text-primary-foreground">
                         Confirm Booking
-                        <Check className="ml-2 h-4 w-4" />
-                      </>
+                        <Check className="ml-2 h-4 w-4"
+                         />
+                      </Button>
                     )}
                   </Button>
                 ) : (
                   <Button
                     onClick={nextStep}
                     disabled={!canProceed()}
-                    className="bg-gradient-primary hover:opacity-90 text-primary-foreground"
+                    className="bg-[rgba(60,67,82,1)] hover:bg-[rgba(60,67,82,0.9)] text-primary-foreground"
                   >
                     Next
                     <ArrowRight className="ml-2 h-4 w-4" />

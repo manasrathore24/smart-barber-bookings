@@ -74,7 +74,7 @@ const Index = () => {
             >
               <Button 
                 size="lg" 
-                className="bg-gradient-primary hover:opacity-90 text-primary-foreground font-semibold px-8 py-6 text-lg glow-primary"
+                className="bg-[rgba(60,67,82,1)] hover:bg-[rgba(60,67,82,0.9)] text-primary-foreground font-semibold px-8 py-6 text-lg glow-primary"
                 onClick={() => navigate(user ? "/book" : "/auth?mode=signup")}
               >
                 {user ? "Book Now" : "Get Started"}

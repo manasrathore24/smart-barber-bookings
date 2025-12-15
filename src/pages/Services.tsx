@@ -81,7 +81,7 @@ export default function Services() {
                       {service.duration_minutes} mins
                     </div>
                     <Button 
-                      size="sm"
+                      size="lg"
                       className="bg-primary/15 text-primary border border-primary/30 hover:bg-primary/25 hover:border-primary/60"
                       onClick={() => navigate(user ? `/book?service=${service.id}` : "/auth?mode=signup")}
                     >
